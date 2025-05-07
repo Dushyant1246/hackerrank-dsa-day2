@@ -22,12 +22,18 @@ class Result1 {
 
     public static void checkMagazine(List<String> magazine, List<String> note) {
         // Write your code here
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        for(String word: magazine){
+            if(hashMap.containsKey(word))
+                hashMap.put(word, hashMap.get(word) + 1);
+            else hashMap.put(word, 1);
+        }
         for(String word: note){
-            if(!magazine.contains(word)){
+            if(hashMap.containsKey(word) && hashMap.get(word) > 0){
+                hashMap.put(word, hashMap.get(word) - 1);
+            }else{
                 System.out.println("No");
                 return;
-            }else{
-                magazine.remove(word);
             }
         }
         System.out.println("Yes");
